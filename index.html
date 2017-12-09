@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!-- so here's a basic html page (these are comments!). Make sure to name them index.html, that way they will open automatically -->
+
+<html>
+
+<head>
+    
+    <meta charset=utf-8 /> <!-- basically says use utf-8, not too important -->
+
+    <title>Hawaii (these are the words in the tab)</title>
+
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' /> <!--not important at the moment -->
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />  <!-- these two lines basically say, use the leaflet library -->
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>            <!--most libraries will have one 'stylesheet' and one 'script' -->
+
+
+    <!-- this is the css part (<style></style>), lots of times you'll see this in a separate document. 
+        It doesn't really matter at this point. I usually keep it in the same 'index.html' file -->
+    <style>  
+
+        /* styles the body, */
+        body {
+            margin: 0;  
+            padding: 0;
+            background: whitesmoke;
+            color: #0D0000;
+        }
+
+
+        /*styles the header, css is secretly complicated, just know that the width and margin stuff here is aligning the
+        header with the map. The width is saying the header will only ever take up 80% of the entire page. */
+        h1 {
+            width: 80%;
+            margin: 10px auto 10px auto;
+            color: #001323;
+        }
+
+        /* styles the map part of the page -- ALL LEAFLET MAPS NEED A WIDTH AND HEIGHT! */
+        #map {
+            width: 80%;
+            height: 540px;
+            margin: 10px auto 10px auto;
+            background: whitesmoke;
+            border: 2px solid #dddedf;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- title -->
+    <h1>Map Title</h1>
+
+    <!--where the map will go -->
+    <div id='map'></div>
+
+
+    <!-- javascript part! -->
+    <script>
+
+
+        //alrighty, so this basically says initialize the leaflet map
+        //the 'map' part is saying hey, put the map in the <div id='map'> part of the page
+        //all maps need to be started with a zoom and a center
+        var map = L.map('map', {
+            zoom: 4, //sets the initial zoom to 4
+            center: [41.112, -99.668] //sets the center of the map: [lat, lng]
+        
+        });
+
+        //this adds a basemap. Here are a lot more: http://leaflet-extras.github.io/leaflet-providers/preview/
+        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager_nolabels/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy;<a href="https://carto.com/attribution">CARTO</a>'
+        }).addTo(map);
+    </script>
+
+</body>
+
+</html>
