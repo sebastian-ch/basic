@@ -51,8 +51,6 @@
     <div id='map'></div>
 
     <script>
-
-        
         var map = L.map('map', {
             zoom: 6,
             center: [20.365, -158.137] //centered map on our geojson data
@@ -69,14 +67,18 @@
         //geojson file that's also in this folder.
 
         //jquery grabs the hawaii.json file, then one it has loaded it, passes it as 'hawaiiData'
-        $.getJSON('hawaii.json', function(hawaiiData) {
-            
+        $.getJSON('hawaii.json', function (hawaiiData) {
 
-            //leaflet takes the file, which is called hawaiiData now, and adds it to the map.
-            L.geoJson(hawaiiData).addTo(map);
 
+            //leaflet takes the file, which is called hawaiiData now, and..
+            L.geoJson(hawaiiData)
+                .bindPopup('omg hawaii') //adds a popup to this geojson
+                .addTo(map) //adds this geojson to the map
+                .openPopup(); //opens the popup on the start of the page
+
+            //if I just wanted to add this data to the map without the popup, I would simply go
+            //L.geoJson(hawaiiData).addTo(map);
         })
-
     </script>
 
 </body>
