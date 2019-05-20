@@ -10,14 +10,12 @@
 
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
 
-    <!-- in this example I'm adding in a new library called jQuery.
-        I'm doing this because jQuery makes it easy to load in the geojson file. 
-        don't worry too much about why atm. -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
+    <!-- in this example I'm adding in a new library called d3.
+       This is because d3 makes it easy to load in a geojson file. -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
 
     <style>
         body {
@@ -57,6 +55,7 @@
 
         });
 
+        //adds basemap layer
         L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager_nolabels/{z}/{x}/{y}.png', {
             maxZoom: 18,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy;<a href="https://carto.com/attribution">CARTO</a>'
@@ -66,9 +65,8 @@
         //this part is different from the index.html file. I'm adding in the 
         //geojson file that's also in this folder.
 
-        //jquery grabs the hawaii.json file, then one it has loaded it, passes it as 'hawaiiData'
-        $.getJSON('hawaii.json', function (hawaiiData) {
-
+        //d3 grabs the hawaii.json file, then one it has loaded it, passes it as 'hawaiiData'
+        d3.json('hawaii.json').then(function (hawaiiData) {
 
             //leaflet takes the file, which is called hawaiiData now, and..
             L.geoJson(hawaiiData)
